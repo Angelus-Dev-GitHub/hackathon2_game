@@ -35,7 +35,8 @@ class BoatController extends AbstractController
 
     /**
      * Move the boat to direction
-     * @Route("/direction/{d}", name="moveDirection")}
+     * @Route("/direction/{d}", name="moveDirection"))
+     *
      */
     public function moveDirection(string $d,
                                   BoatRepository $boatRepository,
