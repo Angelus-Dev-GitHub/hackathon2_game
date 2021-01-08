@@ -18,6 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class BoatController extends AbstractController
 {
+    const Direction = ['N','S','E','W'];
 
     /**
      * Move the boat to coord x,y
@@ -36,7 +37,7 @@ class BoatController extends AbstractController
 
     /**
      * Move the boat to direction
-     * @Route("/direction/{d}", name="moveDirection"))
+     * @Route("/direction/{d}", name="moveDirection")
      *
      */
     public function moveDirection(string $d,
