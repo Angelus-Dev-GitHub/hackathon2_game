@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Boat;
 use App\Form\BoatType;
 use App\Repository\BoatRepository;
+use App\Repository\TileRepository;
 use App\Services\MapManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -41,7 +42,8 @@ class BoatController extends AbstractController
     public function moveDirection(string $d,
                                   BoatRepository $boatRepository,
                                   EntityManagerInterface $em,
-                                  MapManager $mapManager): Response
+                                  MapManager $mapManager,
+                                  TileRepository $tileRepository): Response
     {
         $boat = $boatRepository->findOneBy([]);
         $x = $boat->getCoordX();
@@ -69,6 +71,10 @@ class BoatController extends AbstractController
             $this->addFlash('danger', 'You cannot go outside the limits of the map');
         }
 
+        $treasure = $mapManager->checkTreasure($boat, $tileRepository);
+        if ($treasure){
+            $this->addFlash('success', 'You find the treasure');
+        }
 
         return $this->redirectToRoute('map');
     }

@@ -42,7 +42,6 @@ class HomeController extends AbstractController
         $treasureIsland = $mapManager->getRandomIsland($tileRepository);
         $treasureIsland->setHasTreasure(true);
 
-        //dd($boat, $treasureIsland);
         $entityManager->flush();
 
         return $this->redirectToRoute('map');
