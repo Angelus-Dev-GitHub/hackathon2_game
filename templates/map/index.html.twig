@@ -35,6 +35,14 @@
                 <div class="infos">
                     <h2>Information</h2>
                     {# Add here informations about current ship position #}
+                    {{ boat.coordX }}
+                    {{ boat.coordY }}
+                    {% for tile in tiles %}
+                        {% if (boat.coordX is same as(tile.coordX)) and ( boat.coordY is same as(tile.coordY)) %}
+                            {{ tile.type }}
+                        {% endif %}
+                    {% endfor %}
+
                 </div>
                 <div class="navigation">
                     <h2>Navigation</h2>
