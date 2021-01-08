@@ -64,6 +64,9 @@ class BoatController extends AbstractController
             $boat->setCoordY($y);
             $em->flush();
         }
+        else{
+            $this->addFlash('danger', 'You cannot go outside the limits of the map');
+        }
 
 
         return $this->redirectToRoute('map');
