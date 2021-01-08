@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Boat;
 use App\Form\BoatType;
 use App\Repository\BoatRepository;
+use App\Services\MapManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,9 +35,12 @@ class BoatController extends AbstractController
 
     /**
      * Move the boat to direction
-     * @Route("/direction/{d}", name="moveDirection")
+     * @Route("/direction/{d}", name="moveDirection")}
      */
-    public function moveDirection(string $d, BoatRepository $boatRepository, EntityManagerInterface $em): Response
+    public function moveDirection(string $d,
+                                  BoatRepository $boatRepository,
+                                  EntityManagerInterface $em,
+                                  MapManager $mapManager): Response
     {
         $boat = $boatRepository->findOneBy([]);
         $x = $boat->getCoordX();
@@ -53,10 +57,14 @@ class BoatController extends AbstractController
         if($d === 'E'){
             $x = $x +1;
         }
-        $boat->setCoordX($x);
-        $boat->setCoordY($y);
 
-        $em->flush();
+        $verifyTile = $mapManager->tileExists($x, $y);
+        if($verifyTile){
+            $boat->setCoordX($x);
+            $boat->setCoordY($y);
+            $em->flush();
+        }
+
 
         return $this->redirectToRoute('map');
     }
