@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\TileRepository;
+use App\Services\MapManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,10 +25,6 @@ class MapController extends AbstractController
         }
 
         $boat = $boatRepository->findOneBy([]);
-        //dd($boat);
-
-
-
 
         return $this->render('map/index.html.twig', [
             'map'  => $map ?? [],
