@@ -12,11 +12,19 @@ use phpDocumentor\Reflection\Types\True_;
 
 class MapManager
 {
+    private $tileRepository;
+
+    public function __construct(TileRepository $tileRepository)
+    {
+        $this->tileRepository = $tileRepository;
+    }
+
+
     public function tileExists(int $x, int $y):bool
     {
-        //J'ai pas lu entièrement l'énoncé au départ, et j'ai fais sans le TileRepository - A reprendre//
+        $tile = $this->tileRepository->findOneBy(['coordY' => $y, 'coordX' => $x]);
         $result = false;
-        if(0<=$x && $x<=11 && 0<=$y && $y<=5){
+        if($tile){
             $result = true;
         }
         return $result;
