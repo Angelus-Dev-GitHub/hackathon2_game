@@ -37,16 +37,18 @@ class PlayerController extends AbstractController
 
     /**
      * Move the player to direction
-     * @Route("/direction/{d}", name="moveDirection")
+     * @Route("/direction/{d}{id}", name="moveDirection")
      *
      */
-    public function moveDirection(string $d,
+    public function moveDirection(string $d,string $id,
                                   PlayerRepository $playerRepository,
                                   EntityManagerInterface $em,
                                   MapManager $mapManager,
                                   TileRepository $tileRepository): Response
     {
-        $player = $playerRepository->findOneBy([]);
+
+        $player = $playerRepository->findOneBy(['id' => $id]);
+
         $x = $player->getCoordX();
         $y = $player->getCoordY();
         if($d === 'N'){
@@ -62,7 +64,11 @@ class PlayerController extends AbstractController
             $x = $x +1;
         }
 
-        $verifyTile = $mapManager->tileExists($x, $y);
+        $player->setCoordX($x);
+        $player->setCoordY($y);
+        $em->flush();
+
+        /*$verifyTile = $mapManager->tileExists($x, $y);
         if($verifyTile){
             $player->setCoordX($x);
             $player->setCoordY($y);
@@ -75,7 +81,7 @@ class PlayerController extends AbstractController
         $treasure = $mapManager->checkTreasure($player, $tileRepository);
         if ($treasure){
             $this->addFlash('success', 'You find the treasure');
-        }
+        }*/
 
         return $this->redirectToRoute('map');
     }
