@@ -46,7 +46,6 @@ class PlayerController extends AbstractController
     {
 
         $player = $playerRepository->findOneBy(['id' => $id]);
-
         $x = $player->getCoordX();
         $y = $player->getCoordY();
         if($d === 'N'){

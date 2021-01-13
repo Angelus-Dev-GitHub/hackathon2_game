@@ -1,11 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Xanh+Mono:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200&family=Xanh+Mono:ital@1&display=swap');
 
 :root {
+  --main-font: 'Xanh Mono', monospace;
+  --secondary-font: 'Fira Sans', sans-serif;
+
   --light: #fcfafa;
   --dark: #0e0000;
   --dark-transparent: #0e0000dd;
 
-  --main-font: 'Pirata One', cursive;
   --text-size: 14pt;
 
   --navbar-size:70px;
@@ -18,11 +21,12 @@
 }
 
 body {
-  background-image: url('../../public/assets/images/background.jpg');
+  background-color: #999999;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   padding-top: var(--navbar-size);
+  font-family: var(--secondary-font);
 }
 
 nav {
@@ -94,117 +98,4 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 blockquote {
   font-style: italic;
   margin-top:0.5em;
-}
-
-.tile {
-  height: 120px;
-  width: 120px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  text-align: center;
-  mix-blend-mode: multiply;
-  position: relative;
-}
-
-.tile:hover {
-  box-shadow: 0 0 1px var(--dark);
-}
-
-.coords {
-  text-shadow: 1px 1px 2px var(--dark);
-  font-size: 3em;
-  display: none;
-}
-
-.tile:hover .coords {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-@media screen and (max-width: 1800px) {
-  .tile {
-    height: 100px;
-    width: 100px;
-  }
-}
-
-@media screen and (max-width: 1475px) {
-  .tile {
-    height: 80px;
-    width: 80px;
-  }
-}
-
-@media screen and (max-width: 1200px) {
-  .tile {
-    height: 60px;
-    width: 60px;
-  }
-}
-
-.tile-name {
-  position: absolute;
-  font-family: var(--main-font);
-  opacity: 0.7;
-}
-
-.sea {
-  background-image: url('../../public/assets/images/sea.png');
-}
-
-.port {
-  background-image: url('../../public/assets/images/port.png');
-}
-
-.island {
-  background-image: url('../../public/assets/images/island.png');
-}
-
-@keyframes myBoat {
-  0% {
-    transform: rotate(-5deg);
-    //translate(0 px, 0 px);
-  }
-  50% {
-    transform: translate(5px, 5px);
-  }
-  100% {
-    transform: rotate(5deg) translate(0px, 0px);
-  }
-}
-
-.boat {
-  animation: 3s linear myBoat 0s infinite alternate;
-  filter: drop-shadow(3px 3px 5px var(--dark));
-}
-
-.map {
-  background-image: url('../../public/assets/images/map.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  padding: 1em;
-  margin-top: 1em;
-}
-
-.navigation {
-  background-image: url('../../public/assets/images/compass.png');
-  background-size: cover;
-  width: 100%;
-  height: 300px;
-  padding: 1em;
-  padding-top: 0.2em;
-}
-
-.infos {
-  background-image: url('../../public/assets/images/map.jpg');
-  width: 100%;
-  min-height: 300px;
-  margin-top: 1em;
-  padding: 1em;
-  padding-top: 0.2em;
-}
-
-h2 {
-  font-size: 1.3em;
 }

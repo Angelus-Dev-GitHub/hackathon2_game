@@ -2,7 +2,7 @@
 
 {% block body %}
     <div class="container-fluid">
-        <h1>Map</h1>
+        <h1>Covid-Game !</h1>
         <div class="row">
             <div class="col-md-10">
                 <div class="map">
@@ -17,7 +17,7 @@
                                         <div class="tile-name">{{ map[x][y].name ?? ' '}}</div>
                                         {% for player in players%}
                                         {% if player.coordX == x and player.coordY == y %}
-                                            <img class="player img-fluid" src="{{ asset('assets/images/player.png') }}"
+                                            <img class="player img-fluid" src="{{ player.picture }}"
                                                  alt="player"/>
                                         {% endif %}
                                         {% endfor %}
@@ -28,30 +28,24 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="col-md-2">
-                <div class="infos">
-                    <h2>Information</h2>
-                    {# Add here informations about current ship position #}
-                    {% for player in players %}
-                        {{ player.name }}
-                    {{ player.coordX }}
-                    {{ player.coordY }}
-                    {% for tile in tiles %}
-                        {% if (player.coordX is same as(tile.coordX)) and ( player.coordY is same as(tile.coordY)) %}
-                            {{ tile.type }}
-                        {% endif %}
-                    {% endfor %}
-                    {% endfor %}
-
-                </div>
+            <div class="player-information">
                {% for player in players %}
                 <div class="navigation">
-                    <h2>{{ player.name }}</h2>
-                    {# Add here N/S/E/W buttons #}
+                    <h2>Fiche de jeu de</h2>
+                    <p>{{ player.name }}</p>
+                    <img src="{{ player.picture }}">
+                    <h2>Ton parcours</h2>
+                    <ul>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <div class="direction-commands">
+                        <h2>Commandes</h2>
                     <a href="{{path('moveDirection', {'d': 'N','id': player.id})}}">N</a>
                     <a href="{{path('moveDirection', {'d': 'S','id': player.id})}}">S</a>
                     <a href="{{path('moveDirection', {'d': 'W','id': player.id})}}">W</a>
                     <a href="{{path('moveDirection', {'d': 'E','id': player.id})}}">E</a>
+                </div>
                 </div>
                 {% endfor %}
             </div>
