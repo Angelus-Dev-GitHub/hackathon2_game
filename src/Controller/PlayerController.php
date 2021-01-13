@@ -64,11 +64,7 @@ class PlayerController extends AbstractController
             $x = $x +1;
         }
 
-        $player->setCoordX($x);
-        $player->setCoordY($y);
-        $em->flush();
-
-        /*$verifyTile = $mapManager->tileExists($x, $y);
+        $verifyTile = $mapManager->tileExists($x, $y);
         if($verifyTile){
             $player->setCoordX($x);
             $player->setCoordY($y);
@@ -77,7 +73,7 @@ class PlayerController extends AbstractController
         else{
             $this->addFlash('danger', 'You cannot go outside the limits of the map');
         }
-
+        /*
         $treasure = $mapManager->checkTreasure($player, $tileRepository);
         if ($treasure){
             $this->addFlash('success', 'You find the treasure');
