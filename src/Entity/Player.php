@@ -31,6 +31,11 @@ class Player
      */
     private $coordY;
 
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $picture;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -68,6 +73,18 @@ class Player
     public function setCoordY(int $coordY): self
     {
         $this->coordY = $coordY;
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(string $picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }
