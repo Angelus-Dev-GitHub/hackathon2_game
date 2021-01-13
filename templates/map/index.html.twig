@@ -20,8 +20,8 @@
                                     <div class="tile col-1 {{ map[x][y].type }}">
                                         <div class="tile-name">{{ map[x][y].name ?? ' '}}</div>
                                         <div class="tile-name coords">{{ map[x][y].coordX }},{{ map[x][y].coordY }}</div>
-                                        {% if boat.coordX == x and boat.coordY == y %}
-                                            <img class="boat img-fluid" src="{{ asset('assets/images/boat.png') }}"
+                                        {% if player.coordX == x and player.coordY == y %}
+                                            <img class="boat img-fluid" src="{{ asset('assets/images/player.png') }}"
                                                  alt="boat"/>
                                         {% endif %}
                                     </div>
@@ -35,10 +35,10 @@
                 <div class="infos">
                     <h2>Information</h2>
                     {# Add here informations about current ship position #}
-                    {{ boat.coordX }}
-                    {{ boat.coordY }}
+                    {{ player.coordX }}
+                    {{ player.coordY }}
                     {% for tile in tiles %}
-                        {% if (boat.coordX is same as(tile.coordX)) and ( boat.coordY is same as(tile.coordY)) %}
+                        {% if (player.coordX is same as(tile.coordX)) and ( player.coordY is same as(tile.coordY)) %}
                             {{ tile.type }}
                         {% endif %}
                     {% endfor %}

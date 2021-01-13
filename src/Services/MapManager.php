@@ -4,9 +4,9 @@
 namespace App\Services;
 
 
-use App\Entity\Boat;
+use App\Entity\Player;
 use App\Entity\Tile;
-use App\Repository\BoatRepository;
+use App\Repository\PlayerRepository;
 use App\Repository\TileRepository;
 use phpDocumentor\Reflection\Types\True_;
 
@@ -31,11 +31,11 @@ class MapManager
         return $treasureIsland;
     }
 
-    public function checkTreasure(Boat $boat, TileRepository $tileRepository)
+    public function checkTreasure(Player $player, TileRepository $tileRepository)
     {
         $result = false;
         $treasureIsland = $tileRepository->findBy(['hasTreasure' => true]);
-        if (($treasureIsland[0]->getCoordX() == $boat->getCoordX()) and ($treasureIsland[0]->getCoordY() == $boat->getCoordY()) ){
+        if (($treasureIsland[0]->getCoordX() == $player->getCoordX()) and ($treasureIsland[0]->getCoordY() == $player->getCoordY()) ){
             return $result = true;
         }
 

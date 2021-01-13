@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Boat;
-use App\Repository\BoatRepository;
+use App\Entity\Player;
+use App\Repository\PlayerRepository;
 use App\Repository\TileRepository;
 use App\Services\MapManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,12 +25,12 @@ class HomeController extends AbstractController
     /**
      * @Route("/start", name="start")
      */
-    public function start(MapManager $mapManager,BoatRepository $boatRepository,TileRepository $tileRepository, EntityManagerInterface $entityManager): Response
+    public function start(MapManager $mapManager, PlayerRepository $playerRepository, TileRepository $tileRepository, EntityManagerInterface $entityManager): Response
     {
-        $boats = $boatRepository->findAll();
-        foreach ($boats as $boat){
-            $boat->setCoordX('0');
-            $boat->setCoordY('0');
+        $players = $playerRepository->findAll();
+        foreach ($players as $player){
+            $player->setCoordX('0');
+            $player->setCoordY('0');
         }
 
         $tiles = $tileRepository->findAll();
