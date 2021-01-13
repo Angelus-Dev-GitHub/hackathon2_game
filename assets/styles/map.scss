@@ -70,7 +70,7 @@
 }
 
 .map {
-    border: 2px solid black;
+    border: 1px solid black;
     padding: 1em;
     margin-top: 1em;
 }
@@ -79,8 +79,8 @@
 }
 
 .navigation {
-    border: 2px solid black;
-    border-radius: 5px;
+    border: 1px solid gray;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -89,6 +89,7 @@
     padding: 1em;
     padding-top: 0.2em;
     margin: 2em;
+    box-shadow: 3px 3px 3px gray;
 }
 
 .infos {
@@ -101,4 +102,11 @@
 
 h2 {
     font-size: 1.3em;
+}
+.direction {
+    font-size: 50px;
+    color: #5eb5e0;
+}
+.player-picture {
+    width: 100px;
 }

@@ -25,24 +25,8 @@ class HomeController extends AbstractController
     /**
      * @Route("/start", name="start")
      */
-    public function start(MapManager $mapManager, PlayerRepository $playerRepository, TileRepository $tileRepository, EntityManagerInterface $entityManager): Response
+    public function start(): Response
     {
-        $players = $playerRepository->findAll();
-        foreach ($players as $player){
-            $player->setCoordX('0');
-            $player->setCoordY('0');
-        }
-
-        $tiles = $tileRepository->findAll();
-        foreach ($tiles as $tile){
-            $tile->setHasTreasure(false);
-        }
-        $entityManager->flush();
-
-        $treasureIsland = $mapManager->getRandomIsland($tileRepository);
-        $treasureIsland->setHasTreasure(true);
-
-        $entityManager->flush();
 
         return $this->redirectToRoute('map');
     }
