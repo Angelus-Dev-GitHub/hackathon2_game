@@ -26,6 +26,7 @@ class MapController extends AbstractController
 
         $players = $playerRepository-> findAll();
 
+
         return $this->render('map/index.html.twig', [
             'map'  => $map ?? [],
             'players' => $players,

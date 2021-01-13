@@ -26,6 +26,16 @@
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="{{ path('map') }}">Carte</a>
                     <a class="nav-item nav-link" href="{{ path('start') }}">Départ</a>
+                    {% if app.user %}
+                        <a class="nav-item nav-link" href="{{ path('app_logout') }}">Se déconnecter</a>
+                    {% else %}
+                        <a class="nav-item nav-link" href="{{ path('app_login') }}">Se connecter</a>
+                    {% endif %}
+                    {% if app.user %}
+                        <a class="nav-item nav-link" href="#"></a>
+                    {% else %}
+                        <a class="nav-item nav-link" href="{{ path('app_register') }}">M'inscrire</a>
+                    {% endif %}
                 </div>
             </div>
         </nav>

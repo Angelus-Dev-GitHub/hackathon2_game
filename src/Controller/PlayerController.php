@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Player;
 use App\Form\PlayerType;
 use App\Repository\PlayerRepository;
-use App\Repository\TileRepository;
 use App\Services\MapManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -43,8 +42,7 @@ class PlayerController extends AbstractController
     public function moveDirection(string $d,string $id,
                                   PlayerRepository $playerRepository,
                                   EntityManagerInterface $em,
-                                  MapManager $mapManager,
-                                  TileRepository $tileRepository): Response
+                                  MapManager $mapManager): Response
     {
 
         $player = $playerRepository->findOneBy(['id' => $id]);
@@ -72,11 +70,6 @@ class PlayerController extends AbstractController
         else{
             $this->addFlash('danger', 'You cannot go outside the limits of the map');
         }
-        /*
-        $treasure = $mapManager->checkTreasure($player, $tileRepository);
-        if ($treasure){
-            $this->addFlash('success', 'You find the treasure');
-        }*/
 
         return $this->redirectToRoute('map');
     }
