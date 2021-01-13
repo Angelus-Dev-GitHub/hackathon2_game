@@ -36,6 +36,16 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $picture;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isInfected;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -112,5 +122,29 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): self
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getIsInfected(): ?bool
+    {
+        return $this->isInfected;
+    }
+
+    public function setIsInfected(?bool $isInfected): self
+    {
+        $this->isInfected = $isInfected;
+
+        return $this;
     }
 }
