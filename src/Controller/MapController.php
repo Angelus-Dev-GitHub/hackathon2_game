@@ -24,11 +24,11 @@ class MapController extends AbstractController
             $map[$tile->getCoordX()][$tile->getCoordY()] = $tile;
         }
 
-        $player = $playerRepository->findOneBy([]);
+        $players = $playerRepository-> findAll();
 
         return $this->render('map/index.html.twig', [
             'map'  => $map ?? [],
-            'player' => $player,
+            'players' => $players,
             'tiles' => $tiles,
         ]);
     }
