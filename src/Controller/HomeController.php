@@ -4,11 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Player;
 use App\Repository\PlayerRepository;
-use App\Repository\TileRepository;
-use App\Services\MapManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -23,28 +20,35 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/start", name="start")
+     * @Route("/start/{n}", name="start")
      */
-    public function start(MapManager $mapManager, PlayerRepository $playerRepository, TileRepository $tileRepository, EntityManagerInterface $entityManager): Response
+    public function start(string $n, EntityManagerInterface $entityManager, PlayerRepository $playerRepository): Response
     {
-        $players = $playerRepository->findAll();
-        foreach ($players as $player){
+        $playerRepository->resetPlayer();
+        for ($i=1; $i<=$n; $i++) {
+            $player = new Player();
+            $player->setName('Joueur' . $i);
             $player->setCoordX('0');
             $player->setCoordY('0');
+            $entityManager->persist($player);
         }
 
-        $tiles = $tileRepository->findAll();
-        foreach ($tiles as $tile){
-            $tile->setHasTreasure(false);
-        }
         $entityManager->flush();
 
-        $treasureIsland = $mapManager->getRandomIsland($tileRepository);
-        $treasureIsland->setHasTreasure(true);
+        return $this->render('home/start.html.twig', ['players' => $playerRepository->findAll()]);
+    }
 
-        $entityManager->flush();
+    /**
+     * @Route("/partyData", name="partyData")
+     */
+    public function partyData(): Response
+    {
+
 
         return $this->redirectToRoute('map');
     }
+    
+    
+    
 
 }

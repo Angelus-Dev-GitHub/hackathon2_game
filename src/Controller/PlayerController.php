@@ -23,11 +23,11 @@ class PlayerController extends AbstractController
      * Move the player to coord x,y
      * @Route("/move/{x}/{y}", name="moveplayer", requirements={"x"="\d+", "y"="\d+"}))
      */
-    public function moveBoat(int $x, int $y, PlayerRepository $boatRepository, EntityManagerInterface $em): Response
+    public function movePlayer(int $x, int $y, PlayerRepository $playerRepository, EntityManagerInterface $em): Response
     {
-        $boat = $boatRepository->findOneBy([]);
-        $boat->setCoordX($x);
-        $boat->setCoordY($y);
+        $player = $playerRepository->findOneBy([]);
+        $player->setCoordX($x);
+        $player->setCoordY($y);
 
         $em->flush();
 

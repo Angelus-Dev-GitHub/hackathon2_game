@@ -19,6 +19,17 @@ class PlayerRepository extends ServiceEntityRepository
         parent::__construct($registry, Player::class);
     }
 
+    public function resetPlayer()
+    {
+        return $this->createQueryBuilder('p')
+            ->delete()
+            ->getQuery()
+            ->execute();
+    }
+
+
+
+
     // /**
     //  * @return Player[] Returns an array of Player objects
     //  */
