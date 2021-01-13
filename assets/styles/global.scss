@@ -31,6 +31,7 @@ body {
 
 nav {
   font-family: var(--main-font);
+  box-shadow: 3px 3px 6px dimgray;
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -98,4 +99,16 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 blockquote {
   font-style: italic;
   margin-top:0.5em;
+}
+form {
+  width: 500px;
+}
+
+.inscription {
+  margin: auto;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  margin-left: 5em;
+  padding: inherit;
 }
