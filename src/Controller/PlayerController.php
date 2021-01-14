@@ -6,6 +6,8 @@ use App\Entity\Player;
 use App\Form\PlayerType;
 use App\Repository\PlayerRepository;
 use App\Services\MapManager;
+use App\Services\VirusManager;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,7 +44,7 @@ class PlayerController extends AbstractController
     public function moveDirection(string $d,string $id,
                                   PlayerRepository $playerRepository,
                                   EntityManagerInterface $em,
-                                  MapManager $mapManager): Response
+                                  MapManager $mapManager, VirusManager $virusManager): Response
     {
         $players = $playerRepository->findAll();
         $player = $playerRepository->findOneBy(['id' => $id]);
@@ -71,6 +73,7 @@ class PlayerController extends AbstractController
             $this->addFlash('danger', 'You cannot go outside the limits of the map');
         }
 
+        $virusManager->randomMoveVirus($em);
         return $this->redirectToRoute('map');
     }
 
@@ -80,7 +83,7 @@ class PlayerController extends AbstractController
      */
     public function index(PlayerRepository $playerRepository): Response
     {
-        return $this->render('player/index.html.twig', ['boats' => $playerRepository->findAll()]);
+        return $this->render('player/index.html.twig', ['players' => $playerRepository->findAll()]);
     }
 
     /**
