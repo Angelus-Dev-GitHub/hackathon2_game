@@ -50,6 +50,11 @@ class Player
      */
     private $playerMissions;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isInfected;
+
 
     public function __construct()
     {
@@ -161,6 +166,18 @@ class Player
                 $playerMission->setPlayer(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsInfected(): ?bool
+    {
+        return $this->isInfected;
+    }
+
+    public function setIsInfected(?bool $isInfected): self
+    {
+        $this->isInfected = $isInfected;
 
         return $this;
     }

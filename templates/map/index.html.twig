@@ -38,6 +38,9 @@
                 <div class="navigation">
                     <br><h2>Fiche de jeu de</h2>
                     <p>{{ player.name }}</p>
+                    {% if player.isInfected %}
+                        <p>Infécté</p>
+                    {% endif %}
                     <img class="player-picture" src="{{ player.picture }}">
                     <br><h2>Ton parcours</h2>
                     {% for mission in missions %}
