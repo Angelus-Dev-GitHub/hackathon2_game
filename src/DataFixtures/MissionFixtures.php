@@ -38,7 +38,7 @@ class MissionFixtures extends Fixture
         $mission6 = new Mission();
         $mission6->setName('Sport');
         $mission6->setCoordX(8);
-        $mission6->setCoordY(4);
+        $mission6->setCoordY(3);
         $manager->persist($mission6);
 
         $mission7 = new Mission();
@@ -50,7 +50,7 @@ class MissionFixtures extends Fixture
         $mission8 = new Mission();
         $mission8->setName('Concert');
         $mission8->setCoordX(10);
-        $mission8->setCoordY(5);
+        $mission8->setCoordY(4);
         $manager->persist($mission8);
 
         $manager->flush();

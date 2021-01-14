@@ -2,9 +2,9 @@
 
 {% block body %}
     <div class="container-fluid">
-        <h1>Covid-Game !</h1>
-        <div class="row">
-            <div class="col-md-10">
+
+
+            <div class="col-md-12">
                 <div class="map">
                     {% if map is empty %}
                         <div class="alert alert-warning">You are still on the firm ground, you have to load fixtures first !</div>
@@ -15,58 +15,59 @@
                                 {% if map[x][y] is defined %}
                                     <div class="tile col-1 {{ map[x][y].type }}">
                                         <div class="tile-name">{{ map[x][y].name ?? ' '}}</div>
-                                        {% for player in players%}
-                                        {% if player.coordX == x and player.coordY == y %}
-                                            <img class="player img-fluid" src="{{ player.picture }}"
-                                                 alt="player"/>
-                                        {% endif %}
-                                        {% endfor %}
-                                        {% for oneVirus in virus %}
-                                        {% if oneVirus.coordX == x and oneVirus.coordY == y %}
-                                            <img class="virus img-fluid" src="{{ oneVirus.picture }}"
-                                                 alt="virus"/>
-                                        {% endif %}
-                                        {% endfor %}
+                                            {% for player in players%}
+                                            {% if player.coordX == x and player.coordY == y %}
+                                                <img class="player img-fluid" src="{{ player.picture }}"
+                                                     alt="player"/>
+                                            {% endif %}
+                                            {% endfor %}
+                                            {% for oneVirus in virus %}
+                                            {% if oneVirus.coordX == x and oneVirus.coordY == y %}
+                                                <img class="virus img-fluid" src="{{ oneVirus.picture }}"
+                                                     alt="virus"/>
+                                            {% endif %}
+                                            {% endfor %}
                                     </div>
                                 {% endif %}
                             {% endfor %}
                         </div>
                     {% endfor %}
                 </div>
-            <div class="player-information">
-               {% for player in players %}
-                <div class="navigation">
-                    <br><h2>Fiche de jeu de</h2>
-                    <p>{{ player.name }}</p>
+                <div class="player-information">
+                  {% for player in players %}
+                    <div class="navigation">
+                        <h2 style="margin-top: 10px">Fiche de jeu de</h2>
+                            <p>{{ player.name }}</p>
                     {% if player.isInfected %}
                         <p>Infécté</p>
                     {% endif %}
-                    <img class="player-picture" src="{{ player.picture }}">
+                            <img class="player-picture" src="{{ player.picture }}">
+                        <h2>Ton parcours</h2>
                     <br><h2>Ton parcours</h2>
                     {% for mission in missions %}
                         {% if player.id == mission.player.id %}
-                    <ul>
+                            <ul>
                         {% if mission.isValid %}
                         <li><s>{{ mission.mission.name}}</s></li>
                             {% else %}
                                 <li>{{ mission.mission.name}}</li>
                                 {% endif %}
-                    </ul>
+                            </ul>
                         {% endif %}
                     {% endfor %}
                     <br><h2>Commandes</h2>
-                    <div class="direction-commands">
+                        <div class="direction-commands">
+                        <a href="{{path('moveDirection', {d: 'N',id: player.id})}}"><i class="fas fa-arrow-alt-circle-up direction"></i></a>
+                        <a href="{{path('moveDirection', {d: 'S',id: player.id})}}"><i class="fas fa-arrow-alt-circle-down direction"></i></a>
+                        <a href="{{path('moveDirection', {d: 'W',id: player.id})}}"><i class="fas fa-arrow-alt-circle-left direction"></i></a>
+                        <a href="{{path('moveDirection', {d: 'E',id: player.id})}}"><i class="fas fa-arrow-alt-circle-right direction"></i></a>
+                        </div>
+                        </div>
+               {% endfor %}
 
-                    <a href="{{path('moveDirection', {d: 'N',id: player.id})}}"><i class="fas fa-arrow-alt-circle-up direction"></i></a>
-                    <a href="{{path('moveDirection', {d: 'S',id: player.id})}}"><i class="fas fa-arrow-alt-circle-down direction"></i></a>
-                    <a href="{{path('moveDirection', {d: 'W',id: player.id})}}"><i class="fas fa-arrow-alt-circle-left direction"></i></a>
-                    <a href="{{path('moveDirection', {d: 'E',id: player.id})}}"><i class="fas fa-arrow-alt-circle-right direction"></i></a>
+
                 </div>
-                </div>
-                {% endfor %}
             </div>
-            </div>
-            </div>
-        </div>
+
     </div>
 {% endblock %}
