@@ -4,7 +4,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
-    mix-blend-mode: multiply;
+    /*mix-blend-mode: multiply;*/
     position: relative;
 }
 
@@ -51,18 +51,6 @@
     opacity: 0.7;
 }
 
-.sea {
-    background-image: url('../images/sea.png');
-}
-
-.port {
-    background-image: url('../images/port.png');
-}
-
-.island {
-    background-image: url('../images/island.png');
-}
-
 @keyframes myBoat {
     0% {
         transform: rotate(-5deg);
@@ -82,10 +70,10 @@
 }
 
 .map {
-    background-image: url('../images/map.jpg');
+    background-image: url('../images/carte.png');
     background-size: cover;
     background-repeat: no-repeat;
-    padding: 1em;
+    padding-left: 17px;
     margin-top: 1em;
 }
 
