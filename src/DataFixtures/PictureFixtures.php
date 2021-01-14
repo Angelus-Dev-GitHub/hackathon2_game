@@ -22,7 +22,7 @@ class PictureFixtures extends Fixture
 
         $picture3 = new Picture();
         $picture3->setName('Wonder Woman');
-        $picture3->setLink('https://www.cjoint.com/doc/21_01/KAnsoDXlRoX_wonder-woman.png');
+        $picture3->setLink('https://www.cjoint.com/doc/21_01/KAnuPjq4jhX_87-873395-avatar-superheroes-removebg-preview-ConvertImage-1-.png');
         $manager->persist($picture3);
 
         $picture4 = new Picture();

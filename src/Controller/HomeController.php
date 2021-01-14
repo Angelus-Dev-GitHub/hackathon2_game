@@ -8,6 +8,7 @@ use App\Entity\Virus;
 use App\Form\GameType;
 use App\Form\PlayerType;
 use App\Repository\GameRepository;
+use App\Repository\PictureRepository;
 use App\Repository\PlayerRepository;
 use App\Repository\TileRepository;
 use App\Repository\VirusRepository;
@@ -25,11 +26,11 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="homepage")
      */
-    public function index(VirusRepository $virusRepository, PlayerRepository $playerRepository): Response
+    public function index(VirusRepository $virusRepository, PictureRepository $pictureRepository): Response
     {
         return $this->render('home/index.html.twig', [
             'virus' => $virusRepository->findAll(),
-            'players' => $playerRepository->findAll(),
+            'players' => $pictureRepository->findAll(),
         ]);
     }
 
@@ -112,6 +113,4 @@ class HomeController extends AbstractController
             'games' => $games,
         ]);
     }
-
-
 }
