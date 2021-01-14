@@ -6,6 +6,7 @@ use App\Entity\Player;
 use App\Form\PlayerType;
 use App\Repository\PlayerRepository;
 use App\Services\MapManager;
+use App\Services\MissionManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -79,9 +80,10 @@ class PlayerController extends AbstractController
     /**
      * @Route("/", name="player_index", methods="GET")
      */
-    public function index(PlayerRepository $playerRepository): Response
+    public function index(PlayerRepository $playerRepository, MissionManager $missionManager, EntityManagerInterface $entityManager): Response
     {
-        return $this->render('player/index.html.twig', ['boats' => $playerRepository->findAll()]);
+        $missionManager->startMissions($entityManager);
+        return $this->render('player/index.html.twig', ['players' => $playerRepository->findAll()]);
     }
 
     /**

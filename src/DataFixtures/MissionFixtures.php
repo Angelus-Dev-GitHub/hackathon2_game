@@ -16,11 +16,6 @@ class MissionFixtures extends Fixture
         $mission1->setCoordY(3);
         $manager->persist($mission1);
 
-        $mission2 = new Mission();
-        $mission2->setName('Docteur');
-        $mission2->setCoordX(4);
-        $mission2->setCoordY(3);
-        $manager->persist($mission2);
 
         $mission3 = new Mission();
         $mission3->setName('Musées');

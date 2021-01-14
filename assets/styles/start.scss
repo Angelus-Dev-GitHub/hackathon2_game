@@ -2,20 +2,20 @@
   .player{
     cursor: pointer;
     &.active{
-      background-color: blue;
+      background-color: #343a40;
     }
     &:hover{
       @extend .active
     }
   }
 
-  
+
   .list-group{
     width: 200px;
     .list-group-item{
       cursor: pointer;
       &.active{
-        background-color: blue;
+        background-color: #343a40;
       }
       &:hover{
         @extend .active

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MissionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,17 @@ class Mission
      * @ORM\Column(type="integer")
      */
     private $coordY;
+
+    /**
+     * @ORM\OneToMany(targetEntity=PlayerMission::class, mappedBy="mission")
+     */
+    private $playerMissions;
+
+    public function __construct()
+    {
+        $this->playerMissions = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -69,6 +82,36 @@ class Mission
     public function setCoordY(int $coordY): self
     {
         $this->coordY = $coordY;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PlayerMission[]
+     */
+    public function getPlayerMissions(): Collection
+    {
+        return $this->playerMissions;
+    }
+
+    public function addPlayerMission(PlayerMission $playerMission): self
+    {
+        if (!$this->playerMissions->contains($playerMission)) {
+            $this->playerMissions[] = $playerMission;
+            $playerMission->setMission($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlayerMission(PlayerMission $playerMission): self
+    {
+        if ($this->playerMissions->removeElement($playerMission)) {
+            // set the owning side to null (unless already changed)
+            if ($playerMission->getMission() === $this) {
+                $playerMission->setMission(null);
+            }
+        }
 
         return $this;
     }

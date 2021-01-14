@@ -30,6 +30,7 @@ class PictureFixtures extends Fixture
         $picture4->setLink('https://www.cjoint.com/doc/21_01/KAnsryAVKXX_batman.png');
         $manager->persist($picture4);
 
+
         $manager->flush();
     }
 }
