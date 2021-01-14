@@ -1,0 +1,27 @@
+.container-fluid-start{
+  .player{
+    cursor: pointer;
+    &.active{
+      background-color: blue;
+    }
+    &:hover{
+      @extend .active
+    }
+  }
+
+  
+  .list-group{
+    width: 200px;
+    .list-group-item{
+      cursor: pointer;
+      &.active{
+        background-color: blue;
+      }
+      &:hover{
+        @extend .active
+      }
+
+    }
+  }
+
+}

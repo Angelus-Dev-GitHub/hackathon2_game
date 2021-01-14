@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid-start">
+        <h1>Nouvelle partie !</h1>
+        <div>
+            <div>
+                {{ form_start(formPlayer) }}
+                {{ form_widget(formPlayer) }}
+                <button type="submit" class="search-button home-btn-main">Valider</button>
+                {{ form_end(formPlayer) }}
+
+            </div>
+
+           {#  <div>
+                <h2>Veuillez choisir votre joueur</h2>
+                <ul class="list-group list-group-vertical">
+                    {% for player in players %}
+                    <li class="list-group-item player">{{ player.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div>
+                <h2>Veuillez choisir votre avatar</h2>
+                <ul class="list-group list-group-vertical">
+                    <li class="list-group-item avatar"><img class="img-fluid" src="https://www.cjoint.com/doc/21_01/KAnsl5SjAgX_black-panther.png"
+                                                     alt="black-panther"/></li>
+                    <li class="list-group-item avatar"><img class="img-fluid" src="https://www.cjoint.com/doc/21_01/KAnsgmhE1lX_captain-america.png"
+                                                     alt="captain-america"/></li>
+                    <li class="list-group-item avatar"><img class="img-fluid" src="https://www.cjoint.com/doc/21_01/KAnsoDXlRoX_wonder-woman.png"
+                                                     alt="wonder-woman"/></li>
+                    <li class="list-group-item avatar"><img class="img-fluid" src="https://www.cjoint.com/doc/21_01/KAnsryAVKXX_batman.png"
+                                                     alt="batman"/></li>
+                </ul>
+            </div>
+        </div>#}
+    </div>
+{% endblock %}
