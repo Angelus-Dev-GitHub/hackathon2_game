@@ -4,14 +4,12 @@
 namespace App\Services;
 
 
-use App\Entity\Mission;
-use App\Entity\Player;
+
 use App\Entity\PlayerMission;
 use App\Repository\GameRepository;
 use App\Repository\MissionRepository;
 use App\Repository\PlayerMissionRepository;
 use App\Repository\PlayerRepository;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 
 class MissionManager
@@ -23,6 +21,8 @@ class MissionManager
     private $gameRepository;
 
     private $playerMissionRepository;
+
+    const SAFE = [['2','5'],['5','5'],['7','5'],['9','5']];
 
    public function __construct(MissionRepository $missionRepository, PlayerRepository $playerRepository,
                                GameRepository $gameRepository, PlayerMissionRepository $playerMissionRepository)
@@ -72,7 +72,33 @@ class MissionManager
                }
            }
        }
-
        $entityManager->flush();
    }
+
+    public function checkWin()
+    {
+        $result = false;
+        $players = $this->playerRepository->findAll();
+
+        foreach ($players as $player){
+            $count = 0;
+            $playermissions = $this->playerMissionRepository->findBy(['player' => $player->getId()]);
+            foreach ($playermissions as $playermission){
+                if ($playermission->getIsValid() === true){
+                    $count++;
+                }
+            }
+            if ($count === 2){
+                foreach (self::SAFE as $safe){
+                    $x = $safe[0];
+                    $y = $safe[1];
+                        if ($x == $player->getCoordX() && $y == $player->getCoordY()){
+                            $result = true;
+                        }
+                }
+            }
+        }
+        return $result;
+    }
+
 }
