@@ -2,12 +2,13 @@
 
 namespace App\Entity;
 
+use App\Repository\PlayerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="PlayerRepository")
+ * @ORM\Entity(repositoryClass=PlayerRepository::class)
  */
 class Player
 {
@@ -48,6 +49,11 @@ class Player
      * @ORM\OneToMany(targetEntity=PlayerMission::class, mappedBy="player")
      */
     private $playerMissions;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isInfected;
 
 
     public function __construct()
@@ -160,6 +166,18 @@ class Player
                 $playerMission->setPlayer(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsInfected(): ?bool
+    {
+        return $this->isInfected;
+    }
+
+    public function setIsInfected(?bool $isInfected): self
+    {
+        $this->isInfected = $isInfected;
 
         return $this;
     }

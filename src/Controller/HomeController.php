@@ -59,6 +59,7 @@ class HomeController extends AbstractController
                 $player->setName($this->getUser()->getName());
                 $player->setCoordY('0');
                 $player->setCoordX('0');
+                $player->setIsInfected(false);
                 $player->setUser($this->getUser());
                 $entityManager->persist($player);
                 $entityManager->flush();
@@ -85,6 +86,7 @@ class HomeController extends AbstractController
             $player->setName($this->getUser()->getName());
             $player->setCoordY('0');
             $player->setCoordX('0');
+            $player->setIsInfected(false);
             $player->setUser($this->getUser());
             $entityManager->persist($player);
             $entityManager->flush();

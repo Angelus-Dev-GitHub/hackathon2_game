@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Mission;
 use App\Entity\Player;
 use App\Form\PlayerType;
 use App\Repository\PlayerRepository;
 use App\Services\MapManager;
+use App\Services\VirusManager;
+use Doctrine\ORM\EntityManager;
 use App\Services\MissionManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -43,7 +46,9 @@ class PlayerController extends AbstractController
     public function moveDirection(string $d,string $id,
                                   PlayerRepository $playerRepository,
                                   EntityManagerInterface $em,
-                                  MapManager $mapManager): Response
+                                  MapManager $mapManager, VirusManager $virusManager,
+                                  MissionManager $missionManager,
+                                  Player $playerr, Mission $mission): Response
     {
 
         $players = $playerRepository->findAll();
@@ -79,8 +84,14 @@ class PlayerController extends AbstractController
             $this->addFlash('danger', 'Vous ne pouvez pas sortir du plateau');
         }
 
+        $missionManager->checkMission($em);
+        $virusManager->randomMoveVirus($em);
+        $virusManager->isInfected($em);
+        $virusManager->DesInfected($em);
 
-
+        if($missionManager->checkWin()){
+            $this->addFlash('success', 'Vous avez gagné(e)');
+        }
 
         return $this->redirectToRoute('map');
     }
@@ -89,9 +100,8 @@ class PlayerController extends AbstractController
     /**
      * @Route("/", name="player_index", methods="GET")
      */
-    public function index(PlayerRepository $playerRepository, EntityManagerInterface $entityManager): Response
+    public function index(PlayerRepository $playerRepository): Response
     {
-
         return $this->render('player/index.html.twig', ['players' => $playerRepository->findAll()]);
     }
 
@@ -123,6 +133,7 @@ class PlayerController extends AbstractController
      */
     public function show(Player $player): Response
     {
+
         return $this->render('player/show.html.twig', ['player' => $player]);
     }
 
