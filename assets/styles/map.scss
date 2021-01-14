@@ -75,6 +75,8 @@
     background-repeat: no-repeat;
     padding-left: 17px;
     margin-top: 1em;
+    width: 92%;
+    height: 62%;
 }
 .player-information {
     display: flex;
@@ -114,6 +116,7 @@ h2 {
     width: 100px;
 }
 
-.virus {
-
+.test-flex {
+    display: flex;
+    flex-direction: inherit;
 }

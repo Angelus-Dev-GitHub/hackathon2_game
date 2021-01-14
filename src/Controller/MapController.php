@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\PictureRepository;
 use App\Repository\TileRepository;
 use App\Repository\VirusRepository;
 use App\Services\MapManager;
@@ -18,7 +19,8 @@ class MapController extends AbstractController
      */
     public function displayMap(PlayerRepository $playerRepository,
                                TileRepository $tileRepository,
-                               VirusRepository $virusRepository): Response
+                               VirusRepository $virusRepository,
+                                PictureRepository $pictureRepository): Response
     {
         $em = $this->getDoctrine()->getManager();
         $tiles = $em->getRepository(Tile::class)->findAll();
@@ -29,13 +31,15 @@ class MapController extends AbstractController
 
         $players = $playerRepository-> findAll();
         $virus = $virusRepository->findAll();
+        $pictures = $pictureRepository->findAll();
 
 
         return $this->render('map/index.html.twig', [
             'map'  => $map ?? [],
             'players' => $players,
             'tiles' => $tiles,
-            'virus' => $virus
+            'virus' => $virus,
+            'pictures' => $pictures,
         ]);
     }
 }
