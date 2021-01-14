@@ -13,6 +13,7 @@ use App\Repository\PlayerRepository;
 use App\Repository\TileRepository;
 use App\Repository\VirusRepository;
 use App\Services\MapManager;
+use App\Services\MissionManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -101,12 +102,15 @@ class HomeController extends AbstractController
      */
     public function waiting(Request $request,
                             EntityManagerInterface $entityManager,
-                            PlayerRepository $playerRepository, GameRepository $gameRepository): Response
+                            PlayerRepository $playerRepository, GameRepository $gameRepository, MissionManager $missionManager): Response
     {
 
         $players = $playerRepository->findAll();
         $games = $gameRepository->findAll();
 
+        if (count($players) === ($games[0]->getNPlayer())){
+            $missionManager->startMissions($entityManager);
+        }
 
         return $this->render('home/waiting.html.twig', [
             'players' => $players,
