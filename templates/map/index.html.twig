@@ -1,12 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('assets/css/map.css') }}">
-{% endblock %}
-
 {% block body %}
     <div class="container-fluid">
-        <h1>Map</h1>
+        <h1>Covid-Game !</h1>
         <div class="row">
             <div class="col-md-10">
                 <div class="map">
@@ -19,11 +15,18 @@
                                 {% if map[x][y] is defined %}
                                     <div class="tile col-1 {{ map[x][y].type }}">
                                         <div class="tile-name">{{ map[x][y].name ?? ' '}}</div>
-                                        <div class="tile-name coords">{{ map[x][y].coordX }},{{ map[x][y].coordY }}</div>
+                                        {% for player in players%}
                                         {% if player.coordX == x and player.coordY == y %}
-                                            <img class="boat img-fluid" src="{{ asset('assets/images/player.png') }}"
-                                                 alt="boat"/>
+                                            <img class="player img-fluid" src="{{ player.picture }}"
+                                                 alt="player"/>
                                         {% endif %}
+                                        {% endfor %}
+                                        {% for oneVirus in virus %}
+                                        {% if oneVirus.coordX == x and oneVirus.coordY == y %}
+                                            <img class="virus img-fluid" src="{{ oneVirus.picture }}"
+                                                 alt="virus"/>
+                                        {% endif %}
+                                        {% endfor %}
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -31,27 +34,27 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="col-md-2">
-                <div class="infos">
-                    <h2>Information</h2>
-                    {# Add here informations about current ship position #}
-                    {{ player.coordX }}
-                    {{ player.coordY }}
-                    {% for tile in tiles %}
-                        {% if (player.coordX is same as(tile.coordX)) and ( player.coordY is same as(tile.coordY)) %}
-                            {{ tile.type }}
-                        {% endif %}
-                    {% endfor %}
-
-                </div>
+            <div class="player-information">
+               {% for player in players %}
                 <div class="navigation">
-                    <h2>Navigation</h2>
-                    {# Add here N/S/E/W buttons #}
-                    <a href="{{path('moveDirection', {'d': 'N'})}}">N</a>
-                    <a href="{{path('moveDirection', {'d': 'S'})}}">S</a>
-                    <a href="{{path('moveDirection', {'d': 'W'})}}">W</a>
-                    <a href="{{path('moveDirection', {'d': 'E'})}}">E</a>
+                    <br><h2>Fiche de jeu de</h2>
+                    <p>{{ player.name }}</p>
+                    <img class="player-picture" src="{{ player.picture }}">
+                    <br><h2>Ton parcours</h2>
+                    <ul>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <br><h2>Commandes</h2>
+                    <div class="direction-commands">
+
+                    <a href="{{path('moveDirection', {'d': 'N','id': player.id})}}"><i class="fas fa-arrow-alt-circle-up direction"></i></a>
+                    <a href="{{path('moveDirection', {'d': 'S','id': player.id})}}"><i class="fas fa-arrow-alt-circle-down direction"></i></a>
+                    <a href="{{path('moveDirection', {'d': 'W','id': player.id})}}"><i class="fas fa-arrow-alt-circle-left direction"></i></a>
+                    <a href="{{path('moveDirection', {'d': 'E','id': player.id})}}"><i class="fas fa-arrow-alt-circle-right direction"></i></a>
                 </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

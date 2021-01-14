@@ -37,11 +37,33 @@ class AppFixtures extends Fixture
             }
         }
 
-        $player = new Player();
-        $player->setCoordX(0);
-        $player->setCoordY(0);
-        $player->setName('Player1');
-        $manager->persist($player);
+        $player1 = new Player();
+        $player1->setCoordX(0);
+        $player1->setCoordY(0);
+        $player1->setName('Edwige');
+        $player1->setPicture('https://www.cjoint.com/doc/21_01/KAnsgmhE1lX_captain-america.png');
+        $manager->persist($player1);
+
+        $player2 = new Player();
+        $player2->setCoordX(11);
+        $player2->setCoordY(0);
+        $player2->setName('Thierry');
+        $player2->setPicture('https://www.cjoint.com/doc/21_01/KAnsl5SjAgX_black-panther.png');
+        $manager->persist($player2);
+
+        $player3 = new Player();
+        $player3->setCoordX(11);
+        $player3->setCoordY(5);
+        $player3->setName('Guillaume');
+        $player3->setPicture('https://www.cjoint.com/doc/21_01/KAnuPjq4jhX_87-873395-avatar-superheroes-removebg-preview-ConvertImage-1-.png');
+        $manager->persist($player3);
+
+        $player4 = new Player();
+        $player4->setCoordX(0);
+        $player4->setCoordY(5);
+        $player4->setName('Sandra');
+        $player4->setPicture('https://www.cjoint.com/doc/21_01/KAnsryAVKXX_batman.png');
+        $manager->persist($player4);
 
         $manager->flush();
     }

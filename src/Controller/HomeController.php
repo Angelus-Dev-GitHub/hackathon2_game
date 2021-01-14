@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Player;
+use App\Entity\Virus;
 use App\Repository\PlayerRepository;
 use App\Repository\TileRepository;
+use App\Repository\VirusRepository;
 use App\Services\MapManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,32 +19,19 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="homepage")
      */
-    public function index(): Response
+    public function index(VirusRepository $virusRepository, PlayerRepository $playerRepository): Response
     {
-        return $this->render('home/index.html.twig');
+        return $this->render('home/index.html.twig', [
+            'virus' => $virusRepository->findAll(),
+            'players' => $playerRepository->findAll(),
+        ]);
     }
 
     /**
      * @Route("/start", name="start")
      */
-    public function start(MapManager $mapManager, PlayerRepository $playerRepository, TileRepository $tileRepository, EntityManagerInterface $entityManager): Response
+    public function start(): Response
     {
-        $players = $playerRepository->findAll();
-        foreach ($players as $player){
-            $player->setCoordX('0');
-            $player->setCoordY('0');
-        }
-
-        $tiles = $tileRepository->findAll();
-        foreach ($tiles as $tile){
-            $tile->setHasTreasure(false);
-        }
-        $entityManager->flush();
-
-        $treasureIsland = $mapManager->getRandomIsland($tileRepository);
-        $treasureIsland->setHasTreasure(true);
-
-        $entityManager->flush();
 
         return $this->redirectToRoute('map');
     }

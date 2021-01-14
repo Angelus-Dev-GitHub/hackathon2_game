@@ -54,7 +54,7 @@
 @keyframes myBoat {
     0% {
         transform: rotate(-5deg);
-        translate(0 px, 0 px);
+    //translate(0 px, 0 px);
     }
     50% {
         transform: translate(5px, 5px);
@@ -64,30 +64,38 @@
     }
 }
 
-.boat {
-    animation: 3s linear myBoat 0s infinite alternate;
+.pion {
+
     filter: drop-shadow(3px 3px 5px var(--dark));
 }
 
 .map {
-    background-image: url('../images/carte.png');
+    background-image: url('/build/carte.png');
     background-size: cover;
     background-repeat: no-repeat;
     padding-left: 17px;
     margin-top: 1em;
 }
+.player-information {
+    display: flex;
+}
 
 .navigation {
-    background-image: url('../images/compass.png');
-    background-size: cover;
+    border: 1px solid gray;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-    height: 300px;
+    height: auto;
     padding: 1em;
     padding-top: 0.2em;
+    margin: 2em;
+    box-shadow: 3px 3px 3px gray;
+    background-color: transparentize(gray, 0.5);
 }
 
 .infos {
-    background-image: url('../images/map.jpg');
     width: 100%;
     min-height: 300px;
     margin-top: 1em;
@@ -97,4 +105,15 @@
 
 h2 {
     font-size: 1.3em;
+}
+.direction {
+    font-size: 50px;
+    color: #5eb5e0;
+}
+.player-picture {
+    width: 100px;
+}
+
+.virus {
+
 }

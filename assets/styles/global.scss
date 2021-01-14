@@ -1,3 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Xanh+Mono:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200&family=Xanh+Mono:ital@1&display=swap');
+
+:root {
+  --main-font: 'Xanh Mono', monospace;
+  --secondary-font: 'Fira Sans', sans-serif;
+
+  --light: #fcfafa;
+  --dark: #0e0000;
+  --dark-transparent: #0e0000dd;
+
+  --text-size: 14pt;
+
+  --navbar-size:70px;
+  --container-size: 800px;
+
+  --spacing: 8px;
+  --spacing-2: calc(var(--spacing) * 2);
+  --spacing-3: calc(var(--spacing) * 3);
+  --spacing-4: calc(var(--spacing) * 4);
+}
+
 body {
-  background-color: lightgray;
+  background-color: #999999;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding-top: var(--navbar-size);
+  font-family: var(--secondary-font);
+}
+
+nav {
+  font-family: var(--main-font);
+  box-shadow: 3px 3px 6px dimgray;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--main-font);
+  color: var(--light);
+}
+
+.introduction {
+  background-color: white;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: calc(var(--spacing) * 8) calc(var(--spacing) * 16);
+  font-size: var(--text-size);
+  height: var(--container-size);
+  overflow: auto;
+}
+
+.introduction p::first-letter {
+  font-family: var(--main-font);
+  font-size: 2em;
+}
+
+.deep-sea {
+  margin-top: -15px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 2em;
+  font-size: 16pt;
+  height: 1250px;
+  color: var(--light);
+  background-attachment: fixed;
+}
+
+.instructions {
+  background-color: var(--dark-transparent);
+  padding: var(--spacing);
+  color: var(--light);
+}
+.instructions >li {
+  padding-top: var(--spacing);
+  padding-bottom: var(--spacing);
+  border-bottom:1px solid var(--light);
+}
+
+.instructions > li::first-letter {
+  font-family: var(--main-font);
+  font-size: 1.2em;
+}
+
+.sparrow {
+  width: 200px;
+  filter: sepia(0.5);
+  mix-blend-mode: multiply;
+}
+
+.compass {
+  width: 150px;
+  filter: sepia(1);
+}
+
+.hint {
+  font-family: var(--main-font);
+}
+
+blockquote {
+  font-style: italic;
+  margin-top:0.5em;
+}
+form {
+  width: 500px;
+}
+
+.inscription {
+  margin: auto;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  margin-left: 5em;
+  padding: inherit;
 }

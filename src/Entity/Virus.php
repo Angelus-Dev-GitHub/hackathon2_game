@@ -2,16 +2,17 @@
 
 namespace App\Entity;
 
+use App\Repository\VirusRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="PlayerRepository")
+ * @ORM\Entity(repositoryClass=VirusRepository::class)
  */
-class Player
+class Virus
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @ORM\Id
+     * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -32,7 +33,7 @@ class Player
     private $coordY;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $picture;
 
@@ -82,7 +83,7 @@ class Player
         return $this->picture;
     }
 
-    public function setPicture(string $picture): self
+    public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
 

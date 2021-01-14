@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\TileRepository;
+use App\Repository\VirusRepository;
 use App\Services\MapManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +16,9 @@ class MapController extends AbstractController
     /**
      * @Route("/map", name="map")
      */
-    public function displayMap(PlayerRepository $playerRepository, TileRepository $tileRepository): Response
+    public function displayMap(PlayerRepository $playerRepository,
+                               TileRepository $tileRepository,
+                               VirusRepository $virusRepository): Response
     {
         $em = $this->getDoctrine()->getManager();
         $tiles = $em->getRepository(Tile::class)->findAll();
@@ -24,12 +27,15 @@ class MapController extends AbstractController
             $map[$tile->getCoordX()][$tile->getCoordY()] = $tile;
         }
 
-        $player = $playerRepository->findOneBy([]);
+        $players = $playerRepository-> findAll();
+        $virus = $virusRepository->findAll();
+
 
         return $this->render('map/index.html.twig', [
             'map'  => $map ?? [],
-            'player' => $player,
+            'players' => $players,
             'tiles' => $tiles,
+            'virus' => $virus
         ]);
     }
 }
