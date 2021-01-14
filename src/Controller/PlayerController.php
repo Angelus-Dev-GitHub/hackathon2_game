@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Mission;
 use App\Entity\Player;
 use App\Form\PlayerType;
 use App\Repository\PlayerRepository;
@@ -45,7 +46,9 @@ class PlayerController extends AbstractController
     public function moveDirection(string $d,string $id,
                                   PlayerRepository $playerRepository,
                                   EntityManagerInterface $em,
-                                  MapManager $mapManager, VirusManager $virusManager): Response
+                                  MapManager $mapManager, VirusManager $virusManager,
+                                  MissionManager $missionManager,
+                                  Player $playerr, Mission $mission): Response
     {
 
         $players = $playerRepository->findAll();
@@ -74,7 +77,7 @@ class PlayerController extends AbstractController
         else{
             $this->addFlash('danger', 'Vous ne pouvez pas sortir du plateau');
         }
-
+        $missionManager->checkMission($em);
         $virusManager->randomMoveVirus($em);
         return $this->redirectToRoute('map');
     }

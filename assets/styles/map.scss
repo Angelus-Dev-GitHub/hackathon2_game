@@ -74,9 +74,8 @@
     background-size: cover;
     background-repeat: no-repeat;
     padding-left: 17px;
+    padding-right: 17px;
     margin-top: 1em;
-    width: 92%;
-    height: 62%;
 }
 .player-information {
     display: flex;
@@ -119,4 +118,7 @@ h2 {
 .test-flex {
     display: flex;
     flex-direction: inherit;
+}
+.img-fluid {
+    margin-top: 10px;
 }
