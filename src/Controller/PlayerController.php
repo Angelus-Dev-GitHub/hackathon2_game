@@ -37,7 +37,7 @@ class PlayerController extends AbstractController
 
     /**
      * Move the player to direction
-     * @Route("/direction/{d}{id}", name="moveDirection")
+     * @Route("/direction/{d}/{id}", name="moveDirection")
      *
      */
     public function moveDirection(string $d,string $id,
@@ -45,6 +45,7 @@ class PlayerController extends AbstractController
                                   EntityManagerInterface $em,
                                   MapManager $mapManager): Response
     {
+
         $players = $playerRepository->findAll();
         $player = $playerRepository->findOneBy(['id' => $id]);
         $x = $player->getCoordX();
@@ -69,7 +70,7 @@ class PlayerController extends AbstractController
             $em->flush();
         }
         else{
-            $this->addFlash('danger', 'You cannot go outside the limits of the map');
+            $this->addFlash('danger', 'Vous ne pouvez pas sortir du plateau');
         }
 
         return $this->redirectToRoute('map');

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid-start">
+    <h1>Nouvelle partie !</h1>
+    <div>
+        <div>
+            {{ form_start(formPlayer) }}
+            {{ form_widget(formPlayer) }}
+            <button type="submit" class="search-button home-btn-main">Valider</button>
+            {{ form_end(formPlayer) }}
+
+        </div>
+    </div>
+{% endblock %}
