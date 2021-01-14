@@ -4,7 +4,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
-    mix-blend-mode: multiply;
+    /*mix-blend-mode: multiply;*/
     position: relative;
 }
 
@@ -70,8 +70,10 @@
 }
 
 .map {
-    border: 1px solid black;
-    padding: 1em;
+    background-image: url('/build/carte.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-left: 17px;
     margin-top: 1em;
 }
 .player-information {
