@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\MissionRepository;
 use App\Repository\PictureRepository;
+use App\Repository\PlayerMissionRepository;
 use App\Repository\TileRepository;
 use App\Repository\VirusRepository;
 use App\Services\MapManager;
@@ -24,7 +25,8 @@ class MapController extends AbstractController
                                VirusRepository $virusRepository,
                                PictureRepository $pictureRepository,
                                MissionRepository $missionRepository,
-                               EntityManagerInterface $entityManager): Response
+                               EntityManagerInterface $entityManager,
+                               PlayerMissionRepository $playerMissionRepository): Response
     {
         $tiles = $entityManager->getRepository(Tile::class)->findAll();
 
@@ -35,6 +37,7 @@ class MapController extends AbstractController
         $players = $playerRepository-> findAll();
         $virus = $virusRepository->findAll();
         $pictures = $pictureRepository->findAll();
+        $missions = $playerMissionRepository->findAll();
 
         return $this->render('map/index.html.twig', [
             'map'  => $map ?? [],
@@ -42,6 +45,7 @@ class MapController extends AbstractController
             'tiles' => $tiles,
             'virus' => $virus,
             'pictures' => $pictures,
+            'missions' => $missions,
         ]);
     }
 }

@@ -4,6 +4,7 @@
 namespace App\Services;
 
 
+use App\Repository\PlayerRepository;
 use App\Repository\VirusRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,11 +15,16 @@ class VirusManager
 
     private $mapManager;
 
+    private $playerRepository;
 
-    public function __construct(VirusRepository $virusRepository, MapManager $mapManager)
+    const DOCTOR=['3','1'];
+
+
+    public function __construct(VirusRepository $virusRepository, MapManager $mapManager, PlayerRepository $playerRepository)
     {
         $this->virusRepository = $virusRepository;
         $this->mapManager = $mapManager;
+        $this->playerRepository = $playerRepository;
     }
 
     public function randomMoveVirus($entityManager)
@@ -50,5 +56,41 @@ class VirusManager
 
             $entityManager->flush();
         }
+    }
+
+    public function isInfected(EntityManagerInterface $entityManager)
+    {
+        $viruses = $this->virusRepository->findAll();
+        $players = $this->playerRepository->findAll();
+
+        foreach ($viruses as $virus){
+            $x = $virus->getCoordX();
+            $y = $virus->getCoordY();
+            foreach ($players as $player){
+                $w = $player->getCoordX();
+                $z = $player->getCoordY();
+                if ($x == $w && $y == $z){
+                    $player->setIsInfected(true);
+                }
+            }
+        }
+
+        $entityManager->flush();
+    }
+
+    public function DesInfected(EntityManagerInterface $entityManager)
+    {
+        $players = $this->playerRepository->findAll();
+
+            foreach ($players as $player){
+                $x = $player->getCoordX();
+                $y = $player->getCoordY();
+                if ($x == self::DOCTOR[0] && $y == self::DOCTOR[1]){
+                    $player->setIsInfected(false);
+                }
+            }
+
+
+        $entityManager->flush();
     }
 }
