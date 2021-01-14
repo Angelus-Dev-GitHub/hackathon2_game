@@ -17,6 +17,8 @@ class VirusManager
 
     private $playerRepository;
 
+    const DOCTOR=['3','1'];
+
 
     public function __construct(VirusRepository $virusRepository, MapManager $mapManager, PlayerRepository $playerRepository)
     {
@@ -72,6 +74,22 @@ class VirusManager
                 }
             }
         }
+
+        $entityManager->flush();
+    }
+
+    public function DesInfected(EntityManagerInterface $entityManager)
+    {
+        $players = $this->playerRepository->findAll();
+
+            foreach ($players as $player){
+                $x = $player->getCoordX();
+                $y = $player->getCoordY();
+                if ($x == self::DOCTOR[0] && $y == self::DOCTOR[1]){
+                    $player->setIsInfected(false);
+                }
+            }
+
 
         $entityManager->flush();
     }

@@ -87,6 +87,7 @@ class PlayerController extends AbstractController
         $missionManager->checkMission($em);
         $virusManager->randomMoveVirus($em);
         $virusManager->isInfected($em);
+        $virusManager->DesInfected($em);
 
         return $this->redirectToRoute('map');
     }
