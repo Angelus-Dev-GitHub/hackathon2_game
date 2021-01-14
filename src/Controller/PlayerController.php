@@ -70,15 +70,23 @@ class PlayerController extends AbstractController
 
         $verifyTile = $mapManager->tileExists($x, $y);
         if($verifyTile){
-            $player->setCoordX($x);
-            $player->setCoordY($y);
-            $em->flush();
+            $verifySamePosition = $mapManager->SamePosition($x, $y);
+            if($verifySamePosition){
+                $player->setCoordX($x);
+                $player->setCoordY($y);
+                $em->flush();
+            }
+            else{
+                $this->addFlash('danger', 'Vous ne pouvez pas être à 2 joueurs sur une case');
+            }
         }
         else{
             $this->addFlash('danger', 'Vous ne pouvez pas sortir du plateau');
         }
+
         $missionManager->checkMission($em);
         $virusManager->randomMoveVirus($em);
+
         return $this->redirectToRoute('map');
     }
 
@@ -86,9 +94,9 @@ class PlayerController extends AbstractController
     /**
      * @Route("/", name="player_index", methods="GET")
      */
-    public function index(PlayerRepository $playerRepository, MissionManager $missionManager, EntityManagerInterface $entityManager): Response
+    public function index(PlayerRepository $playerRepository, EntityManagerInterface $entityManager): Response
     {
-        $missionManager->startMissions($entityManager);
+
         return $this->render('player/index.html.twig', ['players' => $playerRepository->findAll()]);
     }
 
@@ -118,9 +126,9 @@ class PlayerController extends AbstractController
     /**
      * @Route("/{id}", name="player_show", methods="GET")
      */
-    public function show(Player $boat): Response
+    public function show(Player $player): Response
     {
-        return $this->render('player/show.html.twig', ['player' => $boat]);
+        return $this->render('player/show.html.twig', ['player' => $player]);
     }
 
     /**

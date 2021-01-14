@@ -13,14 +13,18 @@ class MapManager
 {
     private $tileRepository;
 
-    public function __construct(TileRepository $tileRepository)
+    private $playerRepository;
+
+    public function __construct(TileRepository $tileRepository,PlayerRepository $playerRepository)
     {
         $this->tileRepository = $tileRepository;
+        $this->playerRepository = $playerRepository;
     }
 
 
     public function tileExists(int $x, int $y):bool
     {
+
         $tile = $this->tileRepository->findOneBy(['coordY' => $y, 'coordX' => $x]);
         $result = false;
         if($tile){
@@ -29,6 +33,19 @@ class MapManager
         return $result;
     }
 
+    public function SamePosition(int $x, int $y):bool
+    {
+        $result = true;
+        $players = $this->playerRepository->findAll();
+        foreach ($players as $player) {
+            $w = $player->getCoordX();
+            $z = $player->getCoordY();
+            if (($w === $x) && ($z===$y)){
+                $result = false;
+            }
+        }
 
+        return $result;
+    }
 
 }
