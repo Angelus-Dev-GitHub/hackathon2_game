@@ -90,6 +90,7 @@
     padding-top: 0.2em;
     margin: 2em;
     box-shadow: 3px 3px 3px gray;
+    background-color: transparentize(gray, 0.5);
 }
 
 .infos {
@@ -109,4 +110,8 @@ h2 {
 }
 .player-picture {
     width: 100px;
+}
+
+.virus {
+
 }

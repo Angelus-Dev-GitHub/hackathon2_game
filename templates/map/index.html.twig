@@ -21,6 +21,12 @@
                                                  alt="player"/>
                                         {% endif %}
                                         {% endfor %}
+                                        {% for oneVirus in virus %}
+                                        {% if oneVirus.coordX == x and oneVirus.coordY == y %}
+                                            <img class="virus img-fluid" src="{{ oneVirus.picture }}"
+                                                 alt="virus"/>
+                                        {% endif %}
+                                        {% endfor %}
                                     </div>
                                 {% endif %}
                             {% endfor %}
