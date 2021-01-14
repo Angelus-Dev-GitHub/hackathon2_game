@@ -80,10 +80,10 @@ class PlayerController extends AbstractController
     /**
      * @Route("/", name="player_index", methods="GET")
      */
-    public function index(PlayerRepository $playerRepository, MissionManager $missionManager): Response
+    public function index(PlayerRepository $playerRepository, MissionManager $missionManager, EntityManagerInterface $entityManager): Response
     {
-        $missionManager->startMissions();
-        return $this->render('player/index.html.twig', ['boats' => $playerRepository->findAll()]);
+        $missionManager->startMissions($entityManager);
+        return $this->render('player/index.html.twig', ['players' => $playerRepository->findAll()]);
     }
 
     /**
