@@ -46,10 +46,12 @@
                     </ul>
                     <br><h2>Commandes</h2>
                     <div class="direction-commands">
-                    <a href="{{path('moveDirection', {'d': 'N','id': player.id})}}"><i class="fas fa-arrow-alt-circle-up direction"></i></a>
-                    <a href="{{path('moveDirection', {'d': 'S','id': player.id})}}"><i class="fas fa-arrow-alt-circle-down direction"></i></a>
-                    <a href="{{path('moveDirection', {'d': 'W','id': player.id})}}"><i class="fas fa-arrow-alt-circle-left direction"></i></a>
-                    <a href="{{path('moveDirection', {'d': 'E','id': player.id})}}"><i class="fas fa-arrow-alt-circle-right direction"></i></a>
+
+                    <a href="{{path('moveDirection', {d: 'N',id: player.id})}}"><i class="fas fa-arrow-alt-circle-up direction"></i></a>
+                    <a href="{{path('moveDirection', {d: 'S',id: player.id})}}"><i class="fas fa-arrow-alt-circle-down direction"></i></a>
+                    <a href="{{path('moveDirection', {d: 'W',id: player.id})}}"><i class="fas fa-arrow-alt-circle-left direction"></i></a>
+                    <a href="{{path('moveDirection', {d: 'E',id: player.id})}}"><i class="fas fa-arrow-alt-circle-right direction"></i></a>
+                </div>
                 </div>
                 {% endfor %}
             </div>
