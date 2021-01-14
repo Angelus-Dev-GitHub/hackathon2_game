@@ -44,20 +44,20 @@ class AppFixtures extends Fixture
         $manager->persist($player1);
 
         $player2 = new Player();
-        $player2->setCoordX(0);
-        $player2->setCoordY(1);
+        $player2->setCoordX(11);
+        $player2->setCoordY(0);
         $player2->setName('Thierry');
         $manager->persist($player2);
 
         $player3 = new Player();
-        $player3->setCoordX(0);
-        $player3->setCoordY(2);
+        $player3->setCoordX(11);
+        $player3->setCoordY(5);
         $player3->setName('Guillaume');
         $manager->persist($player3);
 
         $player4 = new Player();
         $player4->setCoordX(0);
-        $player4->setCoordY(3);
+        $player4->setCoordY(5);
         $player4->setName('Sandra');
         $manager->persist($player4);
 

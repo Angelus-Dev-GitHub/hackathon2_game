@@ -2,13 +2,31 @@
 
 {% block body %}
     <div class="container">
-        <h1 class="text-center">Bienvenue au Covid-Game !</h1>
-        <div class="row introduction">
-                <p>
-                    The most famous pirate in the world, the great and inimitable Captain Jack Sparrow, is looking for
-                    the lost treasure of Rackham the Red, an old and pitiless pirate who spread terror among the Caribbean seas,
-                    a long long time ago.
-                </p>
-        </div>
+        <h1 class="text-center">Bienvenue sur Covid-Game !</h1>
+            <h2>Règles du Jeu</h2>
+                <ul>
+                    <strong>But du Jeu :</strong>
+                    <li> Réussir à faire son parcours sans être contaminer par la Covid !</li>
+                    <br><strong>Mise en place</strong>
+                    <li>Je m'inscris ou me connecte si je suis déjà inscrit.</li>
+                    <li>Je choisis mon pion
+                    {% for player in players %}
+                   <img src="{{ player.picture }}" width="25px">
+                    {% endfor %}</li>
+                    <li>Je clique sur "plateau de jeu" dans la barre de navigation</li>
+                    <li>Sur ce plateau apparaissent tous les joueurs (2 à 4) </li>
+                    <li>Ma carte avec toutes les informations: mon pion, mon parcours, les boutons de déplacements</li>
+                    <br><strong>Déroulement :</strong>
+                    <li>Je clique sur "Départ" dans la barre de navigation</li>
+                    <li>Un tour, un déplacement</li>
+                    <li>Je me déplace sur la route du plateau, pour me rendre aux endroits cités</li>
+                    <li>Je ne vais que sur les "tuiles" libres </li>
+                    <li>A tout moment, je peux être contaminé par le virus <img src="{{ virus[0].picture}}" width="25px"> qui apparaît de façon aléatoire</li>
+                    <li>Si je suis contaminé je prends mes précautions afin de ne pas toucher les autres:<br>
+                        je dois impérativement me rendre chez le médecin avant de continuer mon chemin</li>
+                    <li>Si je suis le premier à atteindre mon but <strong>J'AI GAGNÉ!!</strong></li>
+                    <br><strong>Rejouer :</strong>
+                    <li>Si je veux rejouer je clique sur "Départ"</li>
+                </ul>
     </div>
 {% endblock %}

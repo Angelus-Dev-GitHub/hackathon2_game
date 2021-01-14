@@ -24,6 +24,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="{{ path('map') }}">Plateau de jeu</a>
+                    <a class="nav-item nav-link" href="{{ path('start') }}">Départ</a>
                     <a class="nav-item nav-link" href="{{ path('map') }}">Carte</a>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle btn-primary btn-lg" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -38,9 +40,9 @@
                     </li>
                     <a class="nav-item nav-link" href="{{ path('joinparty') }}">Rejoindre une partie</a>
                     {% if app.user %}
-                        <a class="nav-item nav-link" href="{{ path('app_logout') }}">Se déconnecter</a>
+                        <a class="nav-item nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
                     {% else %}
-                        <a class="nav-item nav-link" href="{{ path('app_login') }}">Se connecter</a>
+                        <a class="nav-item nav-link" href="{{ path('app_login') }}">Me connecter</a>
                     {% endif %}
                     {% if app.user %}
                         <a class="nav-item nav-link" href="#"></a>
