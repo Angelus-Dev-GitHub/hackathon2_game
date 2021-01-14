@@ -9,8 +9,10 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Picture;
 use App\Entity\Player;
 use App\Entity\Tile;
+use App\Repository\PictureRepository;
 use App\Repository\PlayerRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -61,30 +63,6 @@ class AppFixtures extends Fixture
         $player4->setCoordY(5);
         $player4->setName('Sandra');
         $manager->persist($player4);
-
-        $playerSick1 = new Player();
-        $playerSick1->setCoordX($player1->getCoordX());
-        $playerSick1->setCoordY($player1->getCoordY());
-        $playerSick1->setPicture('https://www.cjoint.com/doc/21_01/KAolql1JTwX_super-heros-malade.png');
-        $manager->persist($playerSick1);
-
-        $playerSick2 = new Player();
-        $playerSick2->setCoordX($player2->getCoordX());
-        $playerSick2->setCoordY($player2->getCoordY());
-        $playerSick2->setPicture('https://www.cjoint.com/doc/21_01/KAolql1JTwX_super-heros-malade.png');
-        $manager->persist($playerSick2);
-
-        $playerSick3 = new Player();
-        $playerSick3->setCoordX($player3->getCoordX());
-        $playerSick3->setCoordY($player3->getCoordY());
-        $playerSick3->setPicture('https://www.cjoint.com/doc/21_01/KAolql1JTwX_super-heros-malade.png');
-        $manager->persist($playerSick3);
-
-        $playerSick4 = new Player();
-        $playerSick4->setCoordX($player4->getCoordX());
-        $playerSick4->setCoordY($player4->getCoordY());
-        $playerSick4->setPicture('https://www.cjoint.com/doc/21_01/KAolql1JTwX_super-heros-malade.png');
-        $manager->persist($playerSick4);
 
         $manager->flush();
     }

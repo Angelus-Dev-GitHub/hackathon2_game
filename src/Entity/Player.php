@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -42,6 +44,17 @@ class Player
      *
      */
     private $picture;
+
+    /**
+     * @ORM\OneToMany(targetEntity=PlayerMission::class, mappedBy="player")
+     */
+    private $playerMissions;
+
+
+    public function __construct()
+    {
+        $this->playerMissions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -122,4 +135,33 @@ class Player
         return $this;
     }
 
+    /**
+     * @return Collection|PlayerMission[]
+     */
+    public function getPlayerMissions(): Collection
+    {
+        return $this->playerMissions;
+    }
+
+    public function addPlayerMission(PlayerMission $playerMission): self
+    {
+        if (!$this->playerMissions->contains($playerMission)) {
+            $this->playerMissions[] = $playerMission;
+            $playerMission->setPlayer($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlayerMission(PlayerMission $playerMission): self
+    {
+        if ($this->playerMissions->removeElement($playerMission)) {
+            // set the owning side to null (unless already changed)
+            if ($playerMission->getPlayer() === $this) {
+                $playerMission->setPlayer(null);
+            }
+        }
+
+        return $this;
+    }
 }
