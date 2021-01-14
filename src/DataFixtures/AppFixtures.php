@@ -9,8 +9,11 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Picture;
 use App\Entity\Player;
 use App\Entity\Tile;
+use App\Repository\PictureRepository;
+use App\Repository\PlayerRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
