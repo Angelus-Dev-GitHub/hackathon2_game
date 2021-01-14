@@ -64,13 +64,22 @@ class PlayerController extends AbstractController
 
         $verifyTile = $mapManager->tileExists($x, $y);
         if($verifyTile){
-            $player->setCoordX($x);
-            $player->setCoordY($y);
-            $em->flush();
+            $verifySamePosition = $mapManager->SamePosition($x, $y);
+            if($verifySamePosition){
+                $player->setCoordX($x);
+                $player->setCoordY($y);
+                $em->flush();
+            }
+            else{
+                $this->addFlash('danger', 'Vous ne pouvez pas être à 2 joueurs sur une case');
+            }
         }
         else{
             $this->addFlash('danger', 'Vous ne pouvez pas sortir du plateau');
         }
+
+
+
 
         return $this->redirectToRoute('map');
     }
