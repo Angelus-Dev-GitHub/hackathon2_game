@@ -5,6 +5,14 @@
         <h1>Nouvelle partie !</h1>
         <div>
             <div>
+                {{ form_start(formPlayer) }}
+                {{ form_widget(formPlayer) }}
+                <button type="submit" class="search-button home-btn-main">Valider</button>
+                {{ form_end(formPlayer) }}
+
+            </div>
+
+           {#  <div>
                 <h2>Veuillez choisir votre joueur</h2>
                 <ul class="list-group list-group-vertical">
                     {% for player in players %}
@@ -25,6 +33,6 @@
                                                      alt="batman"/></li>
                 </ul>
             </div>
-        </div>
+        </div>#}
     </div>
 {% endblock %}

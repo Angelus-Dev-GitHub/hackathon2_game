@@ -41,28 +41,24 @@ class AppFixtures extends Fixture
         $player1->setCoordX(0);
         $player1->setCoordY(0);
         $player1->setName('Edwige');
-        $player1->setPicture('https://www.cjoint.com/doc/21_01/KAnsgmhE1lX_captain-america.png');
         $manager->persist($player1);
 
         $player2 = new Player();
         $player2->setCoordX(0);
         $player2->setCoordY(1);
         $player2->setName('Thierry');
-        $player2->setPicture('https://www.cjoint.com/doc/21_01/KAnsl5SjAgX_black-panther.png');
         $manager->persist($player2);
 
         $player3 = new Player();
         $player3->setCoordX(0);
         $player3->setCoordY(2);
         $player3->setName('Guillaume');
-        $player3->setPicture('https://www.cjoint.com/doc/21_01/KAnsoDXlRoX_wonder-woman.png');
         $manager->persist($player3);
 
         $player4 = new Player();
         $player4->setCoordX(0);
         $player4->setCoordY(3);
         $player4->setName('Sandra');
-        $player4->setPicture('https://www.cjoint.com/doc/21_01/KAnsryAVKXX_batman.png');
         $manager->persist($player4);
 
         $manager->flush();

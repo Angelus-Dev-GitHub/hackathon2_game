@@ -32,7 +32,13 @@ class Player
     private $coordY;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $user;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Picture::class, mappedBy="player", cascade={"persist", "remove"})
      */
     private $picture;
 
@@ -77,15 +83,42 @@ class Player
         return $this;
     }
 
-    public function getPicture(): ?string
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user): void
+    {
+        $this->user = $user;
+    }
+
+    public function getPicture(): ?Picture
     {
         return $this->picture;
     }
 
-    public function setPicture(string $picture): self
+    public function setPicture(?Picture $picture): self
     {
+        // unset the owning side of the relation if necessary
+        if ($picture === null && $this->picture !== null) {
+            $this->picture->setPlayer(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($picture !== null && $picture->getPlayer() !== $this) {
+            $picture->setPlayer($this);
+        }
+
         $this->picture = $picture;
 
         return $this;
     }
+
 }
