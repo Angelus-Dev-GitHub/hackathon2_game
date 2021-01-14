@@ -44,7 +44,7 @@ class PlayerController extends AbstractController
                                   EntityManagerInterface $em,
                                   MapManager $mapManager): Response
     {
-
+        $players = $playerRepository->findAll();
         $player = $playerRepository->findOneBy(['id' => $id]);
         $x = $player->getCoordX();
         $y = $player->getCoordY();

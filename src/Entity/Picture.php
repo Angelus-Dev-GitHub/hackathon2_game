@@ -10,6 +10,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Picture
 {
+
+    public function __toString()
+    {
+       return $this->link;
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -23,7 +29,7 @@ class Picture
     private $name;
 
     /**
-     * @ORM\OneToOne(targetEntity=Player::class, inversedBy="pictureP", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Player::class, inversedBy="picture", cascade={"persist", "remove"})
      */
     private $player;
 

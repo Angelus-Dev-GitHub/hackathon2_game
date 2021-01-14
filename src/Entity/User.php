@@ -42,7 +42,7 @@ class User implements UserInterface
     private $isInfected;
 
     /**
-     * @ORM\OneToOne(targetEntity=Player::class, mappedBy="picture", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Player::class, mappedBy="user", cascade={"persist", "remove"})
      */
     private $player;
 

@@ -38,7 +38,7 @@ class Player
     private $user;
 
     /**
-     * @ORM\OneToOne(targetEntity=Picture::class, mappedBy="player", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Picture::class, mappedBy="player", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $picture;
 

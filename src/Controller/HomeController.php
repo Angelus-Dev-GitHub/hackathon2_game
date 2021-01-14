@@ -32,15 +32,14 @@ class HomeController extends AbstractController
         $formPlayer = $this->createForm(PlayerType::class, $player);
         $formPlayer->handleRequest($request);
         if ($formPlayer->isSubmitted() && $formPlayer->isValid()) {
-            $player->setName($this->getUser());
-            dd($this->getUser());
+            $player->setName($this->getUser()->getName());
             $player->setCoordY('0');
             $player->setCoordX('0');
-            $player->setUser($this->getUser()->getId);
+            $player->setUser($this->getUser());
             $entityManager->persist($player);
             $entityManager->flush();
 
-            return $this->render('map/index.html.twig');
+            return $this->redirectToRoute('map');
         }
 
         return $this->render('home/start.html.twig', [
@@ -49,25 +48,13 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/partyData", name="partyData")
+     * @Route("/joinparty", name="joinparty")
      */
-    public function partyData(PlayerRepository $playerRepository, Request $request, EntityManagerInterface $entityManager): Response
+    public function partyData(): Response
     {
 
-        $player = new Player();
-        $formPlayer = $this->createForm(PlayerType::class, $player);
-        $formPlayer->handleRequest($request);
-        if ($formPlayer->isSubmitted() && $formPlayer->isValid()) {
-            $player->setName($this->getUser());
-            $entityManager->persist($player);
-            $entityManager->flush();
 
-            return $this->render('map/index.html.twig');
-        }
-
-        return $this->render('home/start.html.twig', [
-        'formPlayer' => $formPlayer->createView(),
-            ]);
+        return $this->render('home/start.html.twig');
     }
 
 }
