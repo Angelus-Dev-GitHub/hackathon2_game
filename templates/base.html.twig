@@ -25,7 +25,18 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="{{ path('map') }}">Plateau de jeu</a>
-                    <a class="nav-item nav-link" href="{{ path('start') }}">Départ</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle btn-primary btn-lg" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Créer une nouvelle partie
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Choisir un nombre de joueurs</a>
+                            <a class="dropdown-item" href="{{ path("start",{'n': '2'})}}">2</a>
+                            <a class="dropdown-item" href="{{ path("start",{'n': '3'})}}">3</a>
+                            <a class="dropdown-item" href="{{ path("start",{'n': '4'})}}">4</a>
+                        </div>
+                    </li>
+                    <a class="nav-item nav-link" href="{{ path('joinparty') }}">Rejoindre une partie</a>
                     {% if app.user %}
                         <a class="nav-item nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
                     {% else %}

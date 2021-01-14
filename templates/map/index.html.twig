@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <h1>Covid-Game !</h1>
         <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <div class="map">
                     {% if map is empty %}
                         <div class="alert alert-warning">You are still on the firm ground, you have to load fixtures first !</div>
@@ -33,7 +33,6 @@
                         </div>
                     {% endfor %}
                 </div>
-            </div>
             <div class="player-information">
                {% for player in players %}
                 <div class="navigation">
@@ -47,14 +46,14 @@
                     </ul>
                     <br><h2>Commandes</h2>
                     <div class="direction-commands">
-
                     <a href="{{path('moveDirection', {'d': 'N','id': player.id})}}"><i class="fas fa-arrow-alt-circle-up direction"></i></a>
                     <a href="{{path('moveDirection', {'d': 'S','id': player.id})}}"><i class="fas fa-arrow-alt-circle-down direction"></i></a>
                     <a href="{{path('moveDirection', {'d': 'W','id': player.id})}}"><i class="fas fa-arrow-alt-circle-left direction"></i></a>
                     <a href="{{path('moveDirection', {'d': 'E','id': player.id})}}"><i class="fas fa-arrow-alt-circle-right direction"></i></a>
                 </div>
-                </div>
                 {% endfor %}
+            </div>
+            </div>
             </div>
         </div>
     </div>
