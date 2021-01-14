@@ -40,10 +40,17 @@
                     <p>{{ player.name }}</p>
                     <img class="player-picture" src="{{ player.picture }}">
                     <br><h2>Ton parcours</h2>
+                    {% for mission in missions %}
+                        {% if player.id == mission.player.id %}
                     <ul>
-                        <li></li>
-                        <li></li>
+                        {% if mission.isValid %}
+                        <li><s>{{ mission.mission.name}}</s></li>
+                            {% else %}
+                                <li>{{ mission.mission.name}}</li>
+                                {% endif %}
                     </ul>
+                        {% endif %}
+                    {% endfor %}
                     <br><h2>Commandes</h2>
                     <div class="direction-commands">
 
