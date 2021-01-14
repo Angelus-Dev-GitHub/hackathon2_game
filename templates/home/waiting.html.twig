@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid-start">
+    <h1>En attente de tous les joueurs</h1>
+    <div>
+        <div>
+            {% for player in players %}
+                <p>Nom du joueur: {{ player.name }}</p>
+                <img class="player img-fluid" src="{{ player.picture }}"
+                     alt="player"/>
+            {% endfor %}
+        </div>
+        {% for game in games %}
+        {% if  game.nPlayer == players|length %}
+        <div>
+            <a href="{{path('map')}}">Lancer la partie</a>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}
