@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Xanh+Mono:ital@1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200&family=Xanh+Mono:ital@1&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Text:wght@300&family=Roboto+Mono:wght@300&display=swap');
 :root {
-  --main-font: 'Xanh Mono', monospace;
+  --main-font: 'Big Shoulders Stencil Text', cursive;
   --secondary-font: 'Fira Sans', sans-serif;
 
   --light: #fcfafa;
@@ -21,17 +22,38 @@
 }
 
 body {
-  background-color: #999999;
+  background-color: black;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   padding-top: var(--navbar-size);
   font-family: var(--secondary-font);
+  color: #DDDDDD;
 }
 
 nav {
   font-family: var(--main-font);
   box-shadow: 3px 3px 6px dimgray;
+  font-size: 20pt;
+  height: 2.8em;
+  margin-bottom: 1em;
+}
+a.navbar-brand {
+   font-size: 30pt;
+ }
+#navbarDropdown {
+
+  font-size: 20pt;
+  color: black;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: black;
+  margin-left: 2em;
+}
+
+.bg-dark {
+  background-color: #809BCE !important;
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -81,17 +103,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-size: 1.2em;
 }
 
-.sparrow {
-  width: 200px;
-  filter: sepia(0.5);
-  mix-blend-mode: multiply;
-}
-
-.compass {
-  width: 150px;
-  filter: sepia(1);
-}
-
 .hint {
   font-family: var(--main-font);
 }
@@ -111,4 +122,10 @@ form {
   flex-direction: column;
   margin-left: 5em;
   padding: inherit;
+}
+.picture {
+  flex-wrap: wrap;
+}
+.picture:hover {
+  text-decoration: none;
 }
