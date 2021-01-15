@@ -60,6 +60,7 @@ class VirusManager
 
     public function isInfected(EntityManagerInterface $entityManager)
     {
+        $result = false;
         $viruses = $this->virusRepository->findAll();
         $players = $this->playerRepository->findAll();
 
@@ -71,15 +72,18 @@ class VirusManager
                 $z = $player->getCoordY();
                 if ($x == $w && $y == $z){
                     $player->setIsInfected(true);
+                    $result = true;
                 }
             }
         }
 
         $entityManager->flush();
+        return $result;
     }
 
     public function DesInfected(EntityManagerInterface $entityManager)
     {
+        $result = false;
         $players = $this->playerRepository->findAll();
 
             foreach ($players as $player){
@@ -87,10 +91,10 @@ class VirusManager
                 $y = $player->getCoordY();
                 if ($x == self::DOCTOR[0] && $y == self::DOCTOR[1]){
                     $player->setIsInfected(false);
+                    $result = true;
                 }
             }
-
-
         $entityManager->flush();
+            return $result;
     }
 }

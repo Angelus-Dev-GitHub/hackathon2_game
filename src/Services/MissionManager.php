@@ -59,7 +59,7 @@ class MissionManager
    {
        $missions = $this->missionRepository->findAll();
        $players = $this->playerRepository->findAll();
-
+       $result = false;
        foreach ($missions as $mission){
            $x = $mission->getCoordX();
            $y = $mission->getCoordY();
@@ -68,11 +68,16 @@ class MissionManager
                $z = $player->getCoordY();
                if ($x == $w && $y == $z){
                    $missionValid = $this->playerMissionRepository->findOneBy(['player' => $player->getId(), 'mission' => $mission->getId()]);
-                   $missionValid->setIsValid(true);
+                   if ($missionValid){
+                       $missionValid->setIsValid(true);
+                       $result = true;
+                   }
+
                }
            }
        }
        $entityManager->flush();
+       return $result;
    }
 
     public function checkWin()

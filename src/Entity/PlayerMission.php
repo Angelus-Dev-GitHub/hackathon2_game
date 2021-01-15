@@ -18,7 +18,7 @@ class PlayerMission
     private $id;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=false)
      */
     private $isValid;
 
