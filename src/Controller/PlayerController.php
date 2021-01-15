@@ -84,10 +84,19 @@ class PlayerController extends AbstractController
             $this->addFlash('danger', 'Vous ne pouvez pas sortir du plateau');
         }
 
-        $missionManager->checkMission($em);
+        if ($missionManager->checkMission($em)){
+            $this->addFlash('success', 'Vous avez validé un objectif');
+        }
+
+
         $virusManager->randomMoveVirus($em);
-        $virusManager->isInfected($em);
-        $virusManager->DesInfected($em);
+        if ($virusManager->isInfected($em)){
+            $this->addFlash('danger', 'Vous êtes infecté(e)');
+        };
+
+        if ($virusManager->DesInfected($em)) {
+            $this->addFlash('success', 'Vous êtes désinfécté(e)');
+        };
 
         if($missionManager->checkWin()){
             $this->addFlash('success', 'Vous avez gagné(e)');
