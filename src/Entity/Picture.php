@@ -29,7 +29,8 @@ class Picture
     private $name;
 
     /**
-     * @ORM\OneToOne(targetEntity=Player::class, inversedBy="picture", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Player::class, inversedBy="picture")
+     *
      */
     private $player;
 

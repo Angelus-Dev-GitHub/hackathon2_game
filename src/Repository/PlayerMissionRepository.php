@@ -19,6 +19,14 @@ class PlayerMissionRepository extends ServiceEntityRepository
         parent::__construct($registry, PlayerMission::class);
     }
 
+    public function resetPlayerMissions()
+    {
+        return $this->createQueryBuilder('p')
+            ->delete()
+            ->getQuery()
+            ->execute();
+    }
+
     // /**
     //  * @return PlayerMission[] Returns an array of PlayerMission objects
     //  */

@@ -52,7 +52,9 @@
                             </ul>
                         {% endif %}
                     {% endfor %}
-                    <br><h2>Commandes</h2>
+                    <br>
+                        <h2>Commandes</h2>
+                        <br><br>
                         <div class="direction-commands">
                         <a href="{{path('moveDirection', {d: 'N',id: player.id})}}"><i class="fas fa-arrow-alt-circle-up direction"></i></a>
                         <a href="{{path('moveDirection', {d: 'S',id: player.id})}}"><i class="fas fa-arrow-alt-circle-down direction"></i></a>
