@@ -1,4 +1,5 @@
 .container-fluid-start{
+  margin-left: 2em;
   .player{
     cursor: pointer;
     &.active{
@@ -23,5 +24,7 @@
 
     }
   }
-
+  .formPlayer{
+    margin-top: 1em;
+  }
 }
