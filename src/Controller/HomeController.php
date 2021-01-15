@@ -9,6 +9,7 @@ use App\Form\GameType;
 use App\Form\PlayerType;
 use App\Repository\GameRepository;
 use App\Repository\PictureRepository;
+use App\Repository\PlayerMissionRepository;
 use App\Repository\PlayerRepository;
 use App\Repository\TileRepository;
 use App\Repository\VirusRepository;
@@ -42,8 +43,17 @@ class HomeController extends AbstractController
                           EntityManagerInterface $entityManager,
                           PlayerRepository $playerRepository,
                           Request $request,
-                          GameRepository $gameRepository): Response
+                          GameRepository $gameRepository,
+                          PlayerMissionRepository $playerMissionRepository, PictureRepository $pictureRepository): Response
     {
+        $pictures = $pictureRepository->findAll();
+        foreach ($pictures as $picture) {
+            $picture->setPlayer(null);
+        }
+        $entityManager->flush();
+
+
+        $playerMissionRepository->resetPlayerMissions();
         $playerRepository->resetPlayer();
         $gameRepository->resetGame();
         $game = new Game();

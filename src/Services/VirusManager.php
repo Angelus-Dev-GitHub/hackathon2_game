@@ -29,14 +29,14 @@ class VirusManager
 
     public function randomMoveVirus($entityManager)
     {
-        $virus1 = $this->virusRepository->findOneBy(['id' => 1]);
+        $virus1 = $this->virusRepository->findOneBy([]);
         $x1 = $virus1->getCoordX();
         $y1 = $virus1->getCoordY();
 
         $x1 = $x1 + rand(-1, 1);
         $y1 = $y1 + rand(-1, 1);
 
-        $virus2 = $this->virusRepository->findOneBy(['id' => 2]);
+        $virus2 = $this->virusRepository->findOneBy([], ['id'=>'DESC']);
         $x2 = $virus2->getCoordX();
         $y2 = $virus2->getCoordY();
 

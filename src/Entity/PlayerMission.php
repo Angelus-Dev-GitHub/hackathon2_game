@@ -23,7 +23,7 @@ class PlayerMission
     private $isValid;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Player::class, inversedBy="playerMissions")
+     * @ORM\ManyToOne(targetEntity=Player::class, inversedBy="playerMissions", cascade={"persist", "remove"})
      */
     private $player;
 
